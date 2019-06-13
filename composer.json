@@ -1,0 +1,16 @@
+{
+    "name": "bclib/indipitae-pdf-builder",
+    "description": "Builds PDFs from Intipetae",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjamin Florin",
+            "email": "benjamin.florin@bc.edu"
+        }
+    ],
+    "require": {
+        "mikehaertl/phpwkhtmltopdf": "^2.4",
+        "twig/twig": "^2.0"
+    }
+}

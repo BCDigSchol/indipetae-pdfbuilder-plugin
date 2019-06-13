@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Serif Pro', serif;
+    width: 875px;
+    padding: 1em;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.pdf__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+h2:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 2em;
+}
+
+.pdf__metadata {
+    border-spacing: 1em .25em;
+    float: left;
+    width: 37%;
+    background: #f3f5f4;
+    padding: 1em 0;
+}
+
+.pdf__metadata_term {
+    text-align: right;
+    font-weight: bold;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    width: 38%;
+    vertical-align: top;
+}
+
+.pdf__transcription {
+    float: left;
+    width: 55%;
+    margin-left: 5%;
+    font-size: 18px;
+}
+
+.pdf__value_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

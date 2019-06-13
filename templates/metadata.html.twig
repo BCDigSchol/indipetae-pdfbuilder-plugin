@@ -1,0 +1,15 @@
+<tr>
+    <th class="pdf__metadata_term">{{ metadatum.getLabel }}:</th>
+    <td class="pdf__metadata_value">
+        {% if metadatum.values | length > 1 %}
+            <ul class="pdf__value_list">
+                {% for value in metadatum.values %}
+                    <li>{{ value | raw }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {{ metadatum.values[0] | raw }}
+        {% endif %}
+    </td>
+
+</tr>
