@@ -5,17 +5,17 @@
     </style>
 </head>
 <body>
-<h1 class="pdf__title">{{ title }}</h1>
+<h1 class="pdf__title">{{ letter.title }}</h1>
 <table class="pdf__metadata">
-    {%  for metadatum in metadata %}
+    {%  for metadatum in letter.metadata %}
         {% include "metadata.html.twig" with {"metadatum": metadatum} %}
     {% endfor %}
 </table>
 <div class="pdf__transcription">
     <h2>Transcription</h2>
-    {{ transcription | raw }}
+    {{ letter.transcription | raw }}
     <h2>Transcription — back</h2>
-    {{ transcription_back | raw }}
+    {{ letter.transcription_back | raw }}
 </div>
 </body>
 </html>
