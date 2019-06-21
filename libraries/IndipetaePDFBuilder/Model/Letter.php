@@ -71,6 +71,17 @@ class IndipetaePDFBuilder_Model_Letter
     }
 
     /**
+     * Doesn't work for now!
+     *
+     * @todo figure out how to add citations
+     * @return string
+     */
+    public function citation(): string
+    {
+        return "@TODO: Figure out how to add citations";
+    }
+
+    /**
      * Add a PDF to the item
      *
      * @param string $path_to_pdf
