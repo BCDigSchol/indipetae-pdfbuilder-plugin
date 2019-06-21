@@ -20,6 +20,13 @@ class IndipetaePDFBuilder_Factory
         ]);
     }
 
+    /**
+     * Build the Twig templating engine
+     *
+     * See https://twig.symfony.com/ for how to use Twig templates.
+     *
+     * @return Environment
+     */
     private static function buildTwig(): Environment
     {
         $is_development = APPLICATION_ENV === 'development';
@@ -28,7 +35,7 @@ class IndipetaePDFBuilder_Factory
         $path_to_templates = __DIR__ . '/../../templates';
 
         $loader = new FilesystemLoader($path_to_templates);
-        $twig = new Environment($loader, ['cache' => $path_to_cache, 'debug' => $is_development]);
+        $twig = new Environment($loader, ['cache' => false, 'debug' => $is_development]);
 
         if ($is_development) {
             $twig->addExtension(new DebugExtension());

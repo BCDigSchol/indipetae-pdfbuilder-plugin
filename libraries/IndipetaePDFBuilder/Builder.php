@@ -36,7 +36,7 @@ class IndipetaePDFBuilder_Builder
         $path_to_pdf = $this->buildPathToPDF($letter);
 
         // Remove the old PDF
-        $letter->removePDF($this->filename_prefix);
+        $letter->removePDF('indipetae-transcript');
 
         // Build a temporary PDF.
         $html = $this->buildHTML($letter);
