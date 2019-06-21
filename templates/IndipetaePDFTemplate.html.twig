@@ -1,16 +1,40 @@
+{#
+Template the entire PDF
+
+The PDF template is given two inputs:
+
+    * CSS - the CSS for PDFs, fount in 'pdf-style.css'
+    * letter - a IndipetaePDFBuilder_Model_Letter representind the letter, comprised of
+
+                            : letter.title - the letter's title
+                            : letter.transcription - the letter's main transcription
+                            : letter.transcription_back - the transcription of the back of the letter
+                            : letter.collection - the collection the letter appears in
+                            : letter.metadata - a list of IndipetaePDFBuilder_MetadataField objects representing the
+                                                object metadata
+
+ For a full list metadata elements, see the metadata() function in libraries/IndipetaePDFBuilder/Model/Letter.php
+
+#}
 <html>
 <head>
+
+    {# Include the CSS in the header for faster PDF rendering. #}
     <style>
         {{ css | raw }}
     </style>
 </head>
 <body>
+
 <h1 class="pdf__title">{{ letter.title }}</h1>
+
+{# Create the metadata table from the letter.metadata list. #}
 <table class="pdf__metadata">
-    {%  for metadatum in letter.metadata %}
+    {% for metadatum in letter.metadata %}
         {% include "metadata.html.twig" with {"metadatum": metadatum} %}
     {% endfor %}
 </table>
+
 <div class="pdf__transcription">
     <h2>Transcription</h2>
     {{ letter.transcription | raw }}

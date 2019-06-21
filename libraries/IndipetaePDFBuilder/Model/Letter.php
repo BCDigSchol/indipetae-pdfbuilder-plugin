@@ -28,6 +28,11 @@ class IndipetaePDFBuilder_Model_Letter
     }
 
     /**
+     * Get an array of metadata fields to display
+     *
+     * Each field has a label and a value. Change the order of the fields in the array to change the order that
+     * they render in the PDF.
+     *
      * @return IndipetaePDFBuilder_MetadataField[]
      */
     public function metadata(): array
@@ -46,6 +51,7 @@ class IndipetaePDFBuilder_Model_Letter
             $this->otherNames(),
             $this->leftForMissionLands(),
             $this->anteriorDesire(),
+            $this->collection(),
         ];
     }
 
@@ -55,11 +61,30 @@ class IndipetaePDFBuilder_Model_Letter
 
     }
 
+    public function collection(): IndipetaePDFBuilder_MetadataField
+    {
+        $collection_name = '';
+        if ($collection = $this->item->getCollection()) {
+            $collection_name = metadata($collection, array('Dublin Core', 'Title'));
+        }
+        return new IndipetaePDFBuilder_MetadataField('Collection', [$collection_name]);
+    }
+
+    /**
+     * Add a PDF to the item
+     *
+     * @param string $path_to_pdf
+     */
     public function addFile(string $path_to_pdf): void
     {
         insert_files_for_item($this->item, 'Filesystem', [$path_to_pdf]);
     }
 
+    /**
+     * Remove a PDF from the item
+     *
+     * @param string $filename_prefix
+     */
     public function removePDF(string $filename_prefix): void
     {
         foreach ($this->item->getFiles() as $file) {

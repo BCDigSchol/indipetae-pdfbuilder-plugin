@@ -1,13 +1,33 @@
+{#
+Template for one row of the metadata table.
+
+The template is given one input:
+
+    * metadatadum - a IndipetaePDFBuilder_MetadataField representing the metadata field, comprised of
+
+                        : metadatum.label - the field label
+                        : metadatum.values - the list of values
+
+#}
 <tr>
-    <th class="pdf__metadata_term">{{ metadatum.getLabel }}:</th>
+    <th class="pdf__metadata_term">{{ metadatum.label }}:</th>
     <td class="pdf__metadata_value">
+
+        {# The the metadata value list has more than one item, display it as a list. #}
         {% if metadatum.values | length > 1 %}
             <ul class="pdf__value_list">
                 {% for value in metadatum.values %}
+
+                    {# Use the "raw" filter to include any HTML in the value. #}
                     <li>{{ value | raw }}</li>
                 {% endfor %}
             </ul>
+
+
+        {# If the metadata value list has only one item, just display the first item.  #}
         {% else %}
+            {# Use
+             the "raw" filter to include any HTML in the value. #}
             {{ metadatum.values[0] | raw }}
         {% endif %}
     </td>
