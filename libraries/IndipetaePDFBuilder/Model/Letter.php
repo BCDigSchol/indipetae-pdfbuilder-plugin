@@ -105,63 +105,63 @@ class IndipetaePDFBuilder_Model_Letter
         }
     }
 
-    protected function transcribedBy(): IndipetaePDFBuilder_MetadataField
+    public function transcribedBy(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Contributor', 'Transcribed by');
     }
 
-    protected function date(): IndipetaePDFBuilder_MetadataField
+    public function date(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Date', 'Date');
     }
 
-    protected function from(): IndipetaePDFBuilder_MetadataField
+    public function from(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Coverage', 'From');
     }
 
-    protected function to(): IndipetaePDFBuilder_MetadataField
+    public function to(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Spatial Coverage', 'To');
     }
 
-    protected function sender(): IndipetaePDFBuilder_MetadataField
+    public function sender(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Creator', 'Sender');
     }
 
-    protected function grade(): IndipetaePDFBuilder_MetadataField
+    public function grade(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Replaces', 'Grade');
     }
 
-    protected function recipient(): IndipetaePDFBuilder_MetadataField
+    public function recipient(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Audience', 'Recipient');
     }
 
-    protected function destination(): IndipetaePDFBuilder_MetadataField
+    public function destination(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Publisher', 'Destination');
     }
 
-    protected function models(): IndipetaePDFBuilder_MetadataField
+    public function models(): IndipetaePDFBuilder_MetadataField
     {
         // Space added to label to fix WKHMLToPDF line-break bug.
         return $this->getField('Subject', 'Models/Saints/ Missionaries');
     }
 
-    protected function otherNames(): IndipetaePDFBuilder_MetadataField
+    public function otherNames(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Relation', 'Other names');
     }
 
-    protected function leftForMissionLands(): IndipetaePDFBuilder_MetadataField
+    public function leftForMissionLands(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Date Issued', 'Left for mission lands');
     }
 
-    protected function anteriorDesire(): IndipetaePDFBuilder_MetadataField
+    public function anteriorDesire(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Medium', 'Anterior desire');
     }
