@@ -17,6 +17,11 @@ class IndipetaePDFBuilder_Model_Letter
         return $this->getField('Title', 'Title')->getValues()[0];
     }
 
+    public function id(): string
+    {
+        return (string) $this->item->id;
+    }
+
     public function transcription(): string
     {
         return $this->getField('Description', 'Transcription')->getValues()[0];
