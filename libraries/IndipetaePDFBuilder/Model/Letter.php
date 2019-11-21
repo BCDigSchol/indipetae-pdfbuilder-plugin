@@ -57,8 +57,10 @@ class IndipetaePDFBuilder_Model_Letter
 
     public function callNumber(): IndipetaePDFBuilder_MetadataField
     {
-        return $this->getField('Identifier', 'Call number');
-
+        $archive = $this->getField('Identifier', 'Archive')->getValues()[0];
+        $folder = $this->getField('Has Format', 'Folder')->getValues()[0];
+        $number = $this->getField('Has Version', 'Number')->getValues()[0];
+        return new IndipetaePDFBuilder_MetadataField('Call Number', ["$archive $folder $number"]);
     }
 
     public function collection(): IndipetaePDFBuilder_MetadataField
@@ -73,8 +75,8 @@ class IndipetaePDFBuilder_Model_Letter
     /**
      * Doesn't work for now!
      *
-     * @todo figure out how to add citations
      * @return string
+     * @todo figure out how to add citations
      */
     public function citation(): string
     {
