@@ -44,7 +44,7 @@ The PDF template is given two inputs:
     <h2>Transcription — back</h2>
     {{ letter.transcriptionBack | raw }}
     <h2>Citation</h2>
-    “{{ letter.title }},” <cite>Digital Indipetae Database</cite>, https://indipetae.bc.edu/items/show/{{ letter.id }}. Transcribed by {{ letter.transcribedBy.values[0] }}.
+    “{{ letter.title }},” {{ letter.callNumber.values[0] }}, <cite>Digital Indipetae Database</cite>, https://indipetae.bc.edu/items/show/{{ letter.id }}. Transcribed by {{ letter.transcribedBy.values[0] }}.
 </div>
 </body>
 </html>

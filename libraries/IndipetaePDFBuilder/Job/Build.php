@@ -4,6 +4,9 @@ class IndipetaePDFBuilder_Job_Build extends Omeka_Job_AbstractJob
 {
     public function perform(): void
     {
+        // Wait five seconds to make sure file is saved.
+        sleep(5);
+
         $item_id = $this->_options['item_id'];
         $item = $this->_db->getTable('Item')->find($item_id);
         if ($item) {
