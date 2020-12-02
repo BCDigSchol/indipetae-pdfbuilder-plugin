@@ -56,6 +56,7 @@ class IndipetaePDFBuilder_Model_Letter
             $this->otherNames(),
             $this->leftForMissionLands(),
             $this->anteriorDesire(),
+            $this->notes(),
             $this->collection(),
         ];
     }
@@ -65,7 +66,7 @@ class IndipetaePDFBuilder_Model_Letter
         $archive = $this->getField('Identifier', 'Archive')->getValues()[0];
         $folder = $this->getField('Has Format', 'Folder')->getValues()[0];
         $number = $this->getField('Has Version', 'Number')->getValues()[0];
-        return new IndipetaePDFBuilder_MetadataField('Call Number', ["$archive $folder $number"]);
+        return new IndipetaePDFBuilder_MetadataField('Call Number', ["$archive, $folder, $number"]);
     }
 
     public function collection(): IndipetaePDFBuilder_MetadataField
@@ -171,6 +172,11 @@ class IndipetaePDFBuilder_Model_Letter
     public function anteriorDesire(): IndipetaePDFBuilder_MetadataField
     {
         return $this->getField('Medium', 'Anterior desire');
+    }
+
+    protected function notes(): IndipetaePDFBuilder_MetadataField
+    {
+        return $this->getField('Abstract','Notes');
     }
 
     protected function getField(string $field, string $label): IndipetaePDFBuilder_MetadataField
