@@ -12,7 +12,7 @@ class IndipetaePdfBuilder_Job_BuildAll extends Omeka_Job_AbstractJob
 
         foreach ($items as $item) {
             $letter = new IndipetaePdfBuilder_Model_Letter($item);
-            $builder->build($letter);
+            IndipetaePdfBuilder_Factory::getBuilder()->build($letter);
         }
 
         sleep(1);
