@@ -1,6 +1,6 @@
 <?php
 
-class IndipetaePDFBuilder_MetadataField
+class IndipetaePdfBuilder_MetadataField
 {
     /**
      * @var string

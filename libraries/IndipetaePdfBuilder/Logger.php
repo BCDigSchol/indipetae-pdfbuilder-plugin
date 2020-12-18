@@ -1,6 +1,6 @@
 <?php
 
-class IndipetaePDFBuilder_Logger
+class IndipetaePdfBuilder_Logger
 {
     public function info(string $message)
     {

@@ -5,16 +5,16 @@ Template the entire PDF
 The PDF template is given two inputs:
 
     * CSS - the CSS for PDFs, fount in 'pdf-style.css'
-    * letter - a IndipetaePDFBuilder_Model_Letter representind the letter, comprised of
+    * letter - a IndipetaePdfBuilder_Model_Letter representind the letter, comprised of
 
                             : letter.title - the letter's title
                             : letter.transcription - the letter's main transcription
                             : letter.transcription_back - the transcription of the back of the letter
                             : letter.collection - the collection the letter appears in
-                            : letter.metadata - a list of IndipetaePDFBuilder_MetadataField objects representing the
+                            : letter.metadata - a list of IndipetaePdfBuilder_MetadataField objects representing the
                                                 object metadata
 
- For a full list metadata elements, see the metadata() function in libraries/IndipetaePDFBuilder/Model/Letter.php
+ For a full list metadata elements, see the metadata() function in libraries/IndipetaePdfBuilder/Model/Letter.php
 
  See https://twig.symfony.com/ for general Twig templating system documentation.
 
@@ -41,8 +41,10 @@ The PDF template is given two inputs:
 <div class="pdf__transcription">
     <h2>Transcription</h2>
     {{ letter.transcription | raw }}
-    <h2>Transcription — back</h2>
-    {{ letter.transcriptionBack | raw }}
+    {% if letter.transcriptionBack %}
+        <h2>Transcription — back</h2>
+        {{ letter.transcriptionBack | raw }}
+    {% endif %}
     <h2>Citation</h2>
     “{{ letter.title }},” {{ letter.callNumber.values[0] }}, <cite>Digital Indipetae Database</cite>, https://indipetae.bc.edu/items/show/{{ letter.id }}. Transcribed by {{ letter.transcribedBy.values[0] }}.
 </div>

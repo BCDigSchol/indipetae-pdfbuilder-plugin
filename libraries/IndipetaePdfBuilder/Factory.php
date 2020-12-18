@@ -1,15 +1,17 @@
 <?php
 
-use IndipetaePDFBuilder_Logger as BuildLogger;
+use IndipetaePdfBuilder_Logger as BuildLogger;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
-class IndipetaePDFBuilder_Factory
+class IndipetaePdfBuilder_Factory
 {
-    public static function getBuilder(): IndipetaePDFBuilder_Builder
+    public static function getBuilder(): IndipetaePdfBuilder_Builder
     {
-        return new IndipetaePDFBuilder_Builder(new BuildLogger(), self::buildTwig(), self::buildWKHTMLToPDF());
+        _log("Building PDF builder", Zend_Log::INFO);
+
+        return new IndipetaePdfBuilder_Builder(new BuildLogger(), self::buildTwig(), self::buildWKHTMLToPDF());
     }
 
     private static function buildWKHTMLToPDF(): \mikehaertl\wkhtmlto\Pdf

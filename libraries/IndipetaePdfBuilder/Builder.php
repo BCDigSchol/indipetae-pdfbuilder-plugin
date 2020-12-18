@@ -5,10 +5,10 @@ use Twig\Environment as Twig;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-class IndipetaePDFBuilder_Builder
+class IndipetaePdfBuilder_Builder
 {
     /**
-     * @var IndipetaePDFBuilder_Logger
+     * @var IndipetaePdfBuilder_Logger
      */
     private $logger;
 
@@ -24,38 +24,52 @@ class IndipetaePDFBuilder_Builder
 
     private $filename_prefix = 'indipetae-transcription';
 
-    public function __construct(IndipetaePDFBuilder_Logger $logger, Twig $twig, WKHTMLToPDF $wkhtmltopdf)
+    public function __construct(IndipetaePdfBuilder_Logger $logger, Twig $twig, WKHTMLToPDF $wkhtmltopdf)
     {
         $this->logger = $logger;
         $this->twig = $twig;
         $this->wkhtmltopdf = $wkhtmltopdf;
     }
 
-    public function build(IndipetaePDFBuilder_Model_Letter $letter): void
+    public function build(IndipetaePdfBuilder_Model_Letter $letter): void
     {
+        _log("Starting Builder::build() for {$letter->id()}");
+
         $path_to_pdf = $this->buildPathToPDF($letter);
 
         // Remove the old PDF
         $letter->removePDF('indipetae-transcript');
 
+        _log("Removed old PDF");
+
         // Build a temporary PDF.
         $html = $this->buildHTML($letter);
+
+        _log("Built PDF HTML");
+
         $this->htmlToPDF($html, $path_to_pdf);
+
+        _log("Built new PDF");
 
         // Add it to the letter.
         $letter->addFile($path_to_pdf);
+
+        _log("Added to letter");
 
         // Delete the temp PDF.
         unlink($path_to_pdf);
     }
 
-    protected function buildHTML(IndipetaePDFBuilder_Model_Letter $letter): string
+    protected function buildHTML(IndipetaePdfBuilder_Model_Letter $letter): string
     {
         $css_file = __DIR__ . '/../../pdf-style.css';
         $context = [
             'letter' => $letter,
             'css' => file_get_contents($css_file)
         ];
+
+        _log("Sending to template");
+
         return $this->twig->render('IndipetaePDFTemplate.html.twig', $context);
     }
 
@@ -71,10 +85,10 @@ class IndipetaePDFBuilder_Builder
         return $path_to_pdf;
     }
 
-    protected function buildPathToPDF(IndipetaePDFBuilder_Model_Letter $letter): string
+    protected function buildPathToPDF(IndipetaePdfBuilder_Model_Letter $letter): string
     {
         $call_number = $letter->callNumber()->getValues()[0] ?? 'transcription';
-        preg_replace('/[ ,.]+/', '-', $call_number);
+        $call_number = str_replace([' ', ',', '/'], '-', $call_number);
         return __DIR__ . "/../../{$this->filename_prefix}-$call_number.pdf";
     }
 }
